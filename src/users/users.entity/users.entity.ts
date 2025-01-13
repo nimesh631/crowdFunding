@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn, OneToMany} from "typeorm";
 import { UserRole } from "../dto/user-role.enum";
+import { Campaigns } from "src/campaigns/campaigns.entity/campaigns.entity";
 
-@Entity('users')
+@Entity()
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -27,4 +28,7 @@ export class User {
     @UpdateDateColumn()
     updatedAt: Date;
 
+    @OneToMany(()=>Campaigns,(campaign)=>campaign.user)
+    campaign: Campaigns;
+    
 }

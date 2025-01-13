@@ -3,6 +3,8 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/users.entity/users.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CampaignsModule } from './campaigns/campaigns.module';
+import { Campaigns } from './campaigns/campaigns.entity/campaigns.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -12,11 +14,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'postgres',
       password: 'nimesh',
       database: 'crowd_funding',
-      entities: [User],
+      entities: [User,Campaigns],
       synchronize: true,
     }),
     UsersModule,
     AuthModule,
+    CampaignsModule,
 
   ],
 })
