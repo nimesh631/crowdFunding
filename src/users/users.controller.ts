@@ -2,19 +2,22 @@ import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nes
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { AuthGuard } from '@nestjs/passport';
-import { Inject } from '@nestjs/common';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
 
 @Controller('users')
+@UseGuards(RolesGuard)
 export class UsersController {
   constructor( private readonly usersService: UsersService) {}
 
   @Post()
+  
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
   @Get()
+
   findAll() {
     return this.usersService.findAll();
   }

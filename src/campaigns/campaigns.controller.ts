@@ -6,19 +6,24 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
+import { UserRole } from 'src/users/dto/user-role.enum';
 
 @ApiBearerAuth()
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard,RolesGuard)
 @Controller('campaigns')
 export class CampaignsController {
     constructor(
          private readonly campaignsService: CampaignsService){}
     
+       
         @Post()
-        create(@Body(ValidationPipe) createCampaignDto: CreateCampaignDto){
+        create(@Body() createCampaignDto: CreateCampaignDto){
             return this.campaignsService.create(createCampaignDto);
         }
-        // 
+        
+        @Roles(UserRole.DONOR)
         @Get()
         findAll(){
             return this.campaignsService.findAll();

@@ -17,10 +17,10 @@ export class Campaigns {
    goal_amount: number;
 
    @Column()
-   start_date: Date;
+   start_date: string;
    
    @Column()
-   end_date: Date;
+   end_date: string;
 
    @Column({type: 'enum',enum: CampaignsStatus})
    status: CampaignsStatus;

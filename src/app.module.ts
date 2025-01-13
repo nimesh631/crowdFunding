@@ -5,6 +5,10 @@ import { User } from './users/users.entity/users.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CampaignsModule } from './campaigns/campaigns.module';
 import { Campaigns } from './campaigns/campaigns.entity/campaigns.entity';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './auth/roles.guard';
+import { DonationsModule } from './donations/donations.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -20,7 +24,10 @@ import { Campaigns } from './campaigns/campaigns.entity/campaigns.entity';
     UsersModule,
     AuthModule,
     CampaignsModule,
+    DonationsModule,
 
+  ],
+  providers: [
   ],
 })
 

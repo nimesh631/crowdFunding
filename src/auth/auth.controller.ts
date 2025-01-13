@@ -8,7 +8,7 @@ import { ApiBody } from '@nestjs/swagger';
 export class AuthController {
     constructor( private authService: AuthService){}
 
-    // @HttpCode(HttpStatus.OK)
+    @HttpCode(HttpStatus.OK)
   
     @Post('login')
     @ApiBody({
@@ -16,8 +16,8 @@ export class AuthController {
       schema: {
         type: 'object',
         properties: {
-          email: {type: 'string', format: 'email', example:"nim@example.com"},
-          password: {type:'string', example:"changeme"},
+          email: {type: 'string', format: 'email', example:"ni@gmail.com"},
+          password: {type:'string', example:"nim12"},
         },
         required: ['email','password'],
       }
